@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <link rel="stylesheet" href="..\static\styles.css">
+    <title>Dumb-ass Law Breaker Detector</title>
+  </head>
+  <body>
+  <h1>Dumb-ass Law Breaker Detector</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+      <p><input type="file" name="file">Drag your files here or click in this area.</p>
+
+        <p><input type="submit" value="submit">Upload</p>
+    </form>
+    <hr>
+    {% for file in files %}
+      <img src="{{ url_for('upload', filename=file) }}" style="width: 320px" alt="none">
+    {% endfor %}
+  <br>
+  <br>
+  </body>
+</html>
