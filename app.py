@@ -26,8 +26,14 @@ def delete_previous_files(files):
 
 @app.route('/')
 def index():
+    # files = os.listdir(app.config['UPLOAD_PATH'])
+    return render_template('index.html')
+
+
+@app.route('/results')
+def results():
     files = os.listdir(app.config['UPLOAD_PATH'])
-    return render_template('index.html',  files=files)
+    return render_template('results.html',  files=files)
 
 
 @app.route('/', methods=['POST'])
@@ -47,7 +53,7 @@ def upload_files():
 
         uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
 
-    return redirect(url_for('index'))
+    return redirect(url_for('results'))
 
 
 @app.route('/uploads/<filename>')
@@ -56,4 +62,4 @@ def upload(filename):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
