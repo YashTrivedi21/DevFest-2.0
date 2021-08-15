@@ -45,14 +45,11 @@ def file_upload():
         if file_path not in app.config['EXTENSIONS_ALLOWED'] or \
                 file_path != sanitary_check(submitted_file.stream):
             abort(400)
-
         files = os.listdir(app.config['DIRECTORY_PATH'])
-
         delete_previous_files(files)
-
         submitted_file.save(os.path.join(app.config['DIRECTORY_PATH'], filename))
-
-    return redirect(url_for('results'))
+        return redirect(url_for('results'))
+    return redirect(url_for('index'))
 
 
 @app.route('/uploads/<filename>')
